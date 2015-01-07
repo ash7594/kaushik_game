@@ -390,11 +390,11 @@ function gameloop(){
             break;
         }
         ///
-        /*if((y)>gates[3].yg && (y)<gates[3].yg+gates[3].height && (x+r)>50 && (x-r)<75) {
-            gateIn = 4;
+        if((y)>gates[4].yg && (y)<gates[4].yg+gates[4].height && (x+r)>475 && (x-r)<500) {
+            gateIn = 5;
             gatesPassed = -1;
             break;
-        }*/
+        }
         ///
         if((x-r)<25) {
             x = 25+r;
@@ -519,13 +519,36 @@ function gameloop(){
               gatesPassed = 3;
               break;
             }
-            break;    
+            break;
+
+        case 5:
+            if((y-r)<gates[4].yg) {
+              y = gates[4].yg+r;
+              velY *= -1;
+            } else if((y+r)>gates[4].yg+gates[4].height) {
+              y = gates[4].yg+gates[4].height-r;
+              velY *= -1;
+            }
+
+            if(x+r<gates[4].xg) {
+              //y = gates[0].yg-r;
+              gateIn = 0;
+              gatesPassed = 4;
+              break;
+            } else if(x-r>gates[4].xg+gates[4].width) {
+              //y = gates[0].yg+gates[0].height-r;
+              gateIn = 0;
+              gatesPassed = 5;
+              alert("Done...");
+              break;
+            }
+            break;      
       
      }
 
 
      /////////////////////////////
-
+    /*
     if (x >= (canvas.width-5)) {
         x = 5;
     } else if (x <= 5) {
@@ -537,7 +560,7 @@ function gameloop(){
     } else if (y <= 5) {
         y = (canvas.height-5);
     }
-  
+    */
    // ctx.fillStyle="rgba(0,0,0,0.3)";
     //ctx.fillRect(0, 0, canvas.width, canvas.height);
       drawMaze();
